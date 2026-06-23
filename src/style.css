@@ -5,24 +5,29 @@
    ============================================================ */
 
 :root {
-  /* ── Paper / ink (warm) ───────────────────────────── */
-  --bg: #f7f3ec;
-  --bg-2: #efeae1;
-  --ink: #121210;
-  --ink-soft: #2a2a27;
-  --muted: #8a8579;
+  /* ── Paper / ink (warm) — WandoriColors backgrounds + text ── */
+  --bg: #f7f3ec;          /* backgroundPrimary   */
+  --bg-2: #efeae1;        /* backgroundSecondary */
+  --paper: #ffffff;       /* backgroundElevated  */
+  --immersive: #0e0e0c;   /* backgroundImmersive */
+  --ink: #121210;         /* textPrimary   */
+  --ink-soft: #2a2a27;    /* textSecondary */
+  --muted: #8a8579;       /* textMuted     */
+  --on-sunset: #fbf8f1;   /* textOnImmersive — warm white for text on dark/CTA */
 
   /* ── Sand accent ──────────────────────────────────── */
-  --sand: #d4b78a;
-  --sand-deep: #b99767;
+  --sand: #d4b78a;        /* accentSand     */
+  --sand-deep: #b99767;   /* accentSandDeep */
+  --sand-tint: rgba(212, 183, 138, 0.18); /* accentSandTint */
 
-  /* ── Sunset (CTA + glow) ──────────────────────────── */
-  --peach: #ffb56f;
-  --coral: #ec5d4b;
-  --dusk: #a92e52;
-  --sunset: linear-gradient(105deg, var(--peach) 0%, var(--coral) 52%, var(--dusk) 100%);
+  /* ── Sunset (decisive action) — sunsetGradient ───── */
+  --peach: #ffb56f;       /* sunsetPeach */
+  --coral: #ec5d4b;       /* sunsetCoral */
+  --dusk: #a92e52;        /* sunsetDusk  */
+  /* 135deg == SwiftUI .topLeading → .bottomTrailing */
+  --sunset: linear-gradient(135deg, var(--peach) 0%, var(--coral) 50%, var(--dusk) 100%);
 
-  --hair: rgba(18, 18, 16, 0.1);
+  --hair: rgba(18, 18, 16, 0.08); /* strokeHairline / divider */
 
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -269,7 +274,7 @@ body {
   font-size: 0.96rem;
   font-weight: 600;
   letter-spacing: 0.01em;
-  color: #fff;
+  color: var(--on-sunset);
   cursor: pointer;
   background: var(--sunset);
   background-size: 160% 160%;
@@ -315,7 +320,7 @@ body {
   margin-bottom: 0.9rem;
   border-radius: 50%;
   font-size: 1.3rem;
-  color: #fff;
+  color: var(--on-sunset);
   background: var(--sunset);
   box-shadow: 0 10px 24px -10px rgba(236, 93, 75, 0.7);
   animation: stampIn 0.55s var(--ease) both;
