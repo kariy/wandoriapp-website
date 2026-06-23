@@ -208,6 +208,31 @@ body {
   background-clip: text;
   color: transparent;
 }
+/* slightly smaller on the confirmation page so it reads as a reply, not the hero */
+.headline--thanks {
+  font-size: clamp(2.6rem, 9vw, 4.6rem);
+}
+
+/* ── Back link (thank-you page) ────────────────────── */
+.backlink {
+  display: inline-block;
+  margin-bottom: clamp(2.4rem, 6vw, 3.4rem);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--sand-deep);
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  transition: color 0.2s var(--ease), transform 0.2s var(--ease);
+}
+.backlink:hover {
+  color: var(--dusk);
+  transform: translateX(-2px);
+}
+.backlink:focus-visible {
+  outline: 2px solid var(--dusk);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
 
 /* ── Pitch ─────────────────────────────────────────── */
 .pitch {

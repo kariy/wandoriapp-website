@@ -65,8 +65,10 @@ Grotesk** (body), loaded from Google Fonts.
 ## Structure
 
 ```
-index.html                  # the single screen + SEO/OG tags
-src/main.js                 # form submit → Formspree (AJAX), success/error states
+index.html                  # the landing screen + SEO/OG tags
+thanks.html                 # standalone "You're on the list." confirmation page
+src/main.js                 # form submit → Formspree (AJAX), then redirect to thanks.html
+src/thanks.js               # loads shared styles for the thanks page
 src/style.css               # brand tokens + layout + animations
 public/favicon.svg          # location-pin mark in the sunset gradient
 public/og-image.png         # (optional) social share image — add your own
