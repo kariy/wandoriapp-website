@@ -1,0 +1,408 @@
+/* ============================================================
+   Wandori — waitlist landing
+   Aesthetic: warm editorial-luxury travel.
+   Brand tokens lifted from the iOS app's DesignSystem.
+   ============================================================ */
+
+:root {
+  /* ── Paper / ink (warm) ───────────────────────────── */
+  --bg: #f7f3ec;
+  --bg-2: #efeae1;
+  --ink: #121210;
+  --ink-soft: #2a2a27;
+  --muted: #8a8579;
+
+  /* ── Sand accent ──────────────────────────────────── */
+  --sand: #d4b78a;
+  --sand-deep: #b99767;
+
+  /* ── Sunset (CTA + glow) ──────────────────────────── */
+  --peach: #ffb56f;
+  --coral: #ec5d4b;
+  --dusk: #a92e52;
+  --sunset: linear-gradient(105deg, var(--peach) 0%, var(--coral) 52%, var(--dusk) 100%);
+
+  --hair: rgba(18, 18, 16, 0.1);
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100svh;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Hanken Grotesk", -apple-system, BlinkMacSystemFont, system-ui,
+    sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+/* ── Atmosphere: sunset glow behind the type ───────── */
+.glow {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      62% 48% at 50% 30%,
+      rgba(255, 181, 111, 0.5) 0%,
+      rgba(236, 93, 75, 0.22) 38%,
+      rgba(169, 46, 82, 0.07) 64%,
+      transparent 82%
+    ),
+    radial-gradient(
+      90% 70% at 84% 108%,
+      rgba(212, 183, 138, 0.35) 0%,
+      transparent 60%
+    );
+  filter: saturate(1.05);
+  animation: breathe 14s var(--ease) infinite;
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 0.92;
+  }
+  50% {
+    transform: scale(1.06) translateY(-1.4%);
+    opacity: 1;
+  }
+}
+
+/* ── Film grain overlay for paper texture ──────────── */
+.grain {
+  position: fixed;
+  inset: -50%;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply;
+}
+
+/* ── Stage / layout ────────────────────────────────── */
+.stage {
+  position: relative;
+  z-index: 2;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: clamp(1.5rem, 5vw, 4rem);
+}
+
+/* editorial corner ticks */
+.frame {
+  position: fixed;
+  width: 26px;
+  height: 26px;
+  border: 1.5px solid var(--sand-deep);
+  opacity: 0.55;
+  z-index: 2;
+}
+.frame--tl {
+  top: clamp(1.1rem, 3.5vw, 2.4rem);
+  left: clamp(1.1rem, 3.5vw, 2.4rem);
+  border-right: 0;
+  border-bottom: 0;
+}
+.frame--br {
+  bottom: clamp(1.1rem, 3.5vw, 2.4rem);
+  right: clamp(1.1rem, 3.5vw, 2.4rem);
+  border-left: 0;
+  border-top: 0;
+}
+
+.card {
+  width: min(40rem, 100%);
+  text-align: center;
+}
+
+/* ── Eyebrow ───────────────────────────────────────── */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  font-size: 0.74rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--sand-deep);
+  margin-bottom: clamp(1.6rem, 4vw, 2.4rem);
+}
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--sunset);
+  box-shadow: 0 0 0 4px rgba(236, 93, 75, 0.16);
+  animation: pulse 2.6s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 3px rgba(236, 93, 75, 0.18);
+  }
+  50% {
+    box-shadow: 0 0 0 7px rgba(236, 93, 75, 0);
+  }
+}
+
+/* ── Wordmark ──────────────────────────────────────── */
+.wordmark {
+  font-family: "Fraunces", Georgia, serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-size: clamp(1.5rem, 4.5vw, 2.1rem);
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  margin-bottom: clamp(1.4rem, 5vw, 2.6rem);
+}
+/* small sand rule under the wordmark */
+.wordmark::after {
+  content: "";
+  display: block;
+  width: 34px;
+  height: 2px;
+  margin: 0.7rem auto 0;
+  background: var(--sand);
+  border-radius: 2px;
+}
+
+/* ── Headline ──────────────────────────────────────── */
+.headline {
+  font-family: "Fraunces", Georgia, serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-size: clamp(2.9rem, 11vw, 5.8rem);
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  margin-bottom: clamp(1.3rem, 3.5vw, 1.9rem);
+}
+.headline em {
+  font-style: italic;
+  font-weight: 500;
+  /* sunset-tinted text */
+  background: var(--sunset);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ── Pitch ─────────────────────────────────────────── */
+.pitch {
+  max-width: 30rem;
+  margin: 0 auto clamp(2.2rem, 5vw, 3rem);
+  font-size: clamp(1rem, 2.4vw, 1.14rem);
+  color: var(--ink-soft);
+  text-wrap: balance;
+}
+
+/* ── Form ──────────────────────────────────────────── */
+.form {
+  max-width: 30rem;
+  margin: 0 auto;
+}
+.gotcha {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.field {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.4rem;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid var(--hair);
+  border-radius: 999px;
+  box-shadow: 0 14px 34px -22px rgba(18, 18, 16, 0.4);
+  backdrop-filter: blur(6px);
+  transition: border-color 0.25s var(--ease), box-shadow 0.25s var(--ease);
+}
+.field:focus-within {
+  border-color: var(--sand);
+  box-shadow: 0 16px 40px -20px rgba(236, 93, 75, 0.4);
+}
+
+#email {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  padding: 0.7rem 0.5rem 0.7rem 1.1rem;
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--ink);
+}
+#email::placeholder {
+  color: var(--muted);
+}
+#email:focus {
+  outline: none;
+}
+
+.submit {
+  position: relative;
+  flex-shrink: 0;
+  border: 0;
+  border-radius: 999px;
+  padding: 0.75rem 1.5rem;
+  font-family: inherit;
+  font-size: 0.96rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: #fff;
+  cursor: pointer;
+  background: var(--sunset);
+  background-size: 160% 160%;
+  background-position: 0% 50%;
+  box-shadow: 0 8px 20px -8px rgba(236, 93, 75, 0.6);
+  transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease),
+    background-position 0.5s var(--ease);
+}
+.submit:hover {
+  background-position: 100% 50%;
+  transform: translateY(-1px);
+  box-shadow: 0 12px 26px -8px rgba(236, 93, 75, 0.7);
+}
+.submit:active {
+  transform: translateY(0);
+}
+.submit:disabled {
+  cursor: progress;
+  opacity: 0.72;
+}
+.submit:focus-visible {
+  outline: 2px solid var(--dusk);
+  outline-offset: 3px;
+}
+
+.form-msg {
+  min-height: 1.2em;
+  margin-top: 0.85rem;
+  font-size: 0.84rem;
+  color: var(--dusk);
+}
+
+/* ── Success state ─────────────────────────────────── */
+.success {
+  max-width: 30rem;
+  margin: 0 auto;
+}
+.success__stamp {
+  display: inline-grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 0.9rem;
+  border-radius: 50%;
+  font-size: 1.3rem;
+  color: #fff;
+  background: var(--sunset);
+  box-shadow: 0 10px 24px -10px rgba(236, 93, 75, 0.7);
+  animation: stampIn 0.55s var(--ease) both;
+}
+@keyframes stampIn {
+  0% {
+    transform: scale(0.4) rotate(-14deg);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.08) rotate(3deg);
+  }
+  100% {
+    transform: scale(1) rotate(0);
+    opacity: 1;
+  }
+}
+.success__title {
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 600;
+  font-size: clamp(1.5rem, 4vw, 1.9rem);
+  letter-spacing: -0.01em;
+}
+.success__sub {
+  margin-top: 0.35rem;
+  color: var(--muted);
+}
+
+/* ── Meta footer ───────────────────────────────────── */
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.7rem;
+  margin-top: clamp(2.4rem, 6vw, 3.4rem);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.meta__sep {
+  color: var(--sand);
+}
+
+/* ── Entrance reveal (staggered) ───────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: reveal 0.85s var(--ease) forwards;
+  animation-delay: calc(var(--d, 0) * 110ms + 120ms);
+}
+@keyframes reveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ── Small screens ─────────────────────────────────── */
+@media (max-width: 480px) {
+  .field {
+    flex-direction: column;
+    border-radius: 22px;
+    padding: 0.55rem;
+  }
+  #email {
+    padding: 0.85rem 1rem;
+    text-align: center;
+  }
+  .submit {
+    width: 100%;
+    padding: 0.85rem;
+  }
+  .frame {
+    display: none;
+  }
+}

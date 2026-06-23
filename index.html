@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <title>Wandori — Find your next memory</title>
+    <meta
+      name="description"
+      content="Wandori is a travel app for iOS. Discover real places through immersive content, plan trips instantly with AI, and collect everywhere you've been. Join the waitlist."
+    />
+    <meta name="theme-color" content="#F7F3EC" />
+
+    <!-- Open Graph / social -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Wandori" />
+    <meta property="og:title" content="Wandori — Find your next memory" />
+    <meta
+      property="og:description"
+      content="Discover real places through immersive travel content, plan trips instantly with AI, and collect everywhere you've been. Coming soon to iOS."
+    />
+    <meta property="og:image" content="/og-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Wandori — Find your next memory" />
+    <meta
+      name="twitter:description"
+      content="Discover real places through immersive travel content, plan trips instantly with AI, and collect everywhere you've been. Coming soon to iOS."
+    />
+    <meta name="twitter:image" content="/og-image.png" />
+
+    <!-- Fonts: Fraunces (editorial soft-serif display) + Hanken Grotesk (body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Hanken+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- film-grain + sunset-glow atmosphere -->
+    <div class="grain" aria-hidden="true"></div>
+    <div class="glow" aria-hidden="true"></div>
+
+    <main class="stage">
+      <!-- editorial corner framing -->
+      <span class="frame frame--tl" aria-hidden="true"></span>
+      <span class="frame frame--br" aria-hidden="true"></span>
+
+      <article class="card">
+        <p class="eyebrow reveal" style="--d: 0">
+          <span class="dot" aria-hidden="true"></span>Coming soon · iOS
+        </p>
+
+        <h1 class="wordmark reveal" style="--d: 1">Wandori</h1>
+
+        <h2 class="headline reveal" style="--d: 2">
+          Find your <em>next&nbsp;memory.</em>
+        </h2>
+
+        <p class="pitch reveal" style="--d: 3">
+          Discover real places through immersive travel content, plan trips
+          instantly with AI, and collect everywhere you've been — like a passport.
+        </p>
+
+        <form id="waitlist" class="form reveal" style="--d: 4" novalidate>
+          <!-- honeypot: hidden from humans, catches bots -->
+          <input
+            type="text"
+            name="_gotcha"
+            tabindex="-1"
+            autocomplete="off"
+            class="gotcha"
+            aria-hidden="true"
+          />
+
+          <div class="field">
+            <input
+              id="email"
+              type="email"
+              name="email"
+              required
+              autocomplete="email"
+              inputmode="email"
+              placeholder="you@email.com"
+              aria-label="Email address"
+            />
+            <button type="submit" class="submit">
+              <span class="submit__label">Join the waitlist</span>
+            </button>
+          </div>
+          <p id="form-msg" class="form-msg" role="status" aria-live="polite"></p>
+        </form>
+
+        <div id="success" class="success reveal" hidden>
+          <span class="success__stamp" aria-hidden="true">✦</span>
+          <p class="success__title">You're on the list.</p>
+          <p class="success__sub">We'll send one email the day Wandori lands.</p>
+        </div>
+
+        <footer class="meta reveal" style="--d: 5">
+          <span>Wandori — Est. 2026</span>
+          <span class="meta__sep" aria-hidden="true">/</span>
+          <span>No spam, just one launch email</span>
+        </footer>
+      </article>
+    </main>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
